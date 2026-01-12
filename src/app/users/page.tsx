@@ -7,8 +7,8 @@ const UsersPage = async () => {
     const res = await fetch(
         'https://jsonplaceholder.typicode.com/users',
         {
-            revalidate: 10,  // top-level works fine
-        } as RequestInit & { revalidate?: number }  // quick assertion
+            cache: 'no-store'
+        }
     );
 
     // Optional: handle errors
@@ -21,6 +21,7 @@ const UsersPage = async () => {
     return (
         <>
             <h1>Ajaxs Minions</h1>
+            <p>{new Date().toLocaleTimeString()}</p>
             <ul>
                 {users.map(user => (
                     <li key={user.id}>{user.name}</li>
